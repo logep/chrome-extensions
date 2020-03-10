@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>cloudBox设置</title>
+    <script src="options.js"></script>
+  </head>
+  <body style="font:12px arial,helvetica,sans-serif">
+    <strong>cloudBox 参数</strong><br />
+    <input type="checkbox" id="cloudBox_notify"><label for="cloudBox_notify">显示桌面提醒</label><br>
+    <input type="checkbox" id="beep"><label for="beep">闹钟提示声音开关</label><br><br>
+    <strong>cloudBox 提示音</strong><br />
+    <select id="alarmSound">
+      <option value="cuckoo.ogg">经典一</option>
+      <option value="digital.ogg">经典二</option>
+    </select> <img id="playImg" style="vertical-align:bottom" src="play-24.png" width="24" height="24" /><br /><br /><br />
+	<button id="saveButton">保存设置</button> <span style="color:red" id="saveMsg"></span>
+  </body>
+</html>
