@@ -74,6 +74,12 @@ function clickedAlarm() {
 }
 
 function clickedCountdown() {
+    // console.log(chrome.runtime.getManifest().version)
+    // console.log(chrome.runtime.lastError)
+    // console.log('sites')
+    chrome.topSites && chrome.topSites.get(function(sites) {
+        console.log(sites)
+    })
     if(document.getElementById("alarmMsg").value==='') return
     var imins = document.getElementById("czeit").value;
     if (imins < 1 || imins > 999 || isNaN(imins)) {
@@ -97,6 +103,8 @@ function setAlarm(alarmzeit, alarmmsg,type) {
         document.getElementById("ButtonCountdown").disabled = true;
     }
     showAlarms(true);
+
+    // chrome.alarms.create("alarm:" + id + day[index], { periodInMinutes: 10080, delayInMinutes: selectedTime.diff(now, "seconds")
     chrome.alarms&&chrome.alarms.create(aname, { when: alarmzeit });
 }
 
@@ -108,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     chrome.browserAction && chrome.browserAction.setBadgeBackgroundColor({ color: "#FFA655" });
 
+    // chrome.history.deleteUrl({ url: url });
     var str = localStorage["lastAValue"];
     if (str) document.getElementById("azeit").value = str;
     str = localStorage["lastCValue"];
@@ -126,3 +135,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+
+// extrals code
+function GetDefaultGmail(purpose) {
+    return new Promise((resolve, reject) => {
+        chrome.identity.getAuthToken({ interactive: true }, token => {
+            var init = {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "application/json"
+                },
+                method: "GET"
+            };
+            fetch(`https://www.googleapis.com/gmail/v1/users/me/${purpose}`, init)
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    });
+}
+function PostDefaultGmail(email, purpose, payload) {
+    chrome.storage.sync.remove("AuthCheck", () => {
+        chrome.storage.sync.remove("access", () => {
+            chrome.storage.local.clear();
+            location.reload();
+        });
+    });
+    return new Promise((resolve, reject) => {
+        chrome.identity.getAuthToken({ interactive: true }, token => {
+            var init = {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "application/json"
+                },
+                method: "POST"
+            };
+
+            if (payload) init["body"] = JSON.stringify(payload);
+            fetch(
+                `https://www.googleapis.com/gmail/v1/users/${email}/${purpose}`,
+                init
+            )
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    });
+
+}
+
