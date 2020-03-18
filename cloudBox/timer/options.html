@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<title>Timer Options</title>
+		<link type="text/css" rel="stylesheet" href="bootstrap.css" />
+		<script type = "text/javascript" src="../lib/jQuery.js"></script>
+		<script type="text/javascript" src="bootstrap.js"></script>
+		<script src="options.js"></script>
+	</head>
+	<body>
+		<!--Add new rule modal dialog-->
+		<div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					x
+				</button>
+				<h3 id="myModalLabel">Create one new rule</h3>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input type="hidden" id="switchStatus_add" value="" />
+					<div class="btn-group switchStatus_add" data-toggle="buttons-radio">
+						<button type="button" class="btn" id="add_status_btn_on">
+							ON
+						</button>
+						<button type="button" class="btn" id="add_status_btn_off">
+							OFF
+						</button>
+						<button type="button" class="btn" id="add_status_btn_notification">
+							Notification
+						</button>
+					</div>
+				</p>
+				<div class="input-prepend">
+					<p>
+						<input id="comments_add"type="text" class="span5" placeholder="Timer Name">
+					</p>
+					<p>
+						<input id = "hour_add" type="text" class="span2" placeholder="Hour" data-provide="typeahead">
+					</p>
+					<p>
+						<input id="minute_add" type="text" class="span2" placeholder="Minute" data-provide="typeahead">
+					</p>
+					<p>
+						<input id="site_add" type="text" class="span6" placeholder="http://">
+					</p>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn" id = "closeAddDialog" data-dismiss="modal" aria-hidden="true">
+					Close
+				</button>
+				<button class="btn btn-primary" id="saveAdd">
+					Save changes
+				</button>
+			</div>
+		</div>
+
+		<!--Edit rule modal dialog-->
+		<div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					x
+				</button>
+				<h3 id="myModalLabel">Edit one rule</h3>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input type="hidden" id="switchStatus_edit" value="" />
+					<div class="btn-group switchStatus_edit" data-toggle="buttons-radio">
+						<button type="button" class="btn" id="edit_status_btn_on">
+							ON
+						</button>
+						<button type="button" class="btn" id="edit_status_btn_off">
+							OFF
+						</button>
+						<button type="button" class="btn" id="edit_status_btn_notification">
+							Notification
+						</button>
+					</div>
+				</p>
+				<div class="input-prepend">
+					<p>
+						<input id="comments_edit"type="text" class="span5" placeholder="Timer Name">
+					</p>
+					<p>
+						<input id = "hour_edit" type="text" class="span2" placeholder="Hour" data-provide="typeahead">
+					</p>
+					<p>
+						<input id="minute_edit" type="text" class="span2" placeholder="Minute" data-provide="typeahead">
+					</p>
+					<p>
+						<input id="site_edit" type="text" class="span6" placeholder="http://">
+					</p>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn" id = "closeEditDialog" data-dismiss="modal" aria-hidden="true">
+					Close
+				</button>
+				<button class="btn btn-primary" id="saveEdit">
+					Save changes
+				</button>
+			</div>
+		</div>
+	</body>
+</html>

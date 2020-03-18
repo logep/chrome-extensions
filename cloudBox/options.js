@@ -1,4 +1,16 @@
 var audio = null;
+function saveSettings2() {
+    // chrome.windows.create({
+    //     url : 'timer/options.html'
+    // });
+    chrome.tabs.getSelected(null, function(tab) {
+        // var currentURL = tab.url;
+        // if(currentURL) {
+            chrome.tabs.update(tab.id, {url: 'timer/options.html'});
+        // }
+    });
+
+}
 function saveSettings()
 {
 	localStorage["beep"] = document.getElementById("beep").checked?"1":"0";
@@ -52,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	if (str) document.getElementById("alarmSound").value = str;
 	document.getElementById("playImg").addEventListener("click", playSound);
     document.getElementById("saveButton").addEventListener("click", saveSettings);
+    document.getElementById("saveButton2").addEventListener("click", saveSettings2);
 });
 const DEFAULT_SETTING = {
     ajaxInterceptor_switchOn: false,

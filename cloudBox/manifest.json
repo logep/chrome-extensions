@@ -13,7 +13,7 @@
   "omnibox": { "keyword" : "zt" },
   "content_scripts": [ {
     "all_frames": true,
-    "js": [ "lib/jquery-1.3.2.min.js","ext/common.js","frame.js"],
+    "js": [ "ext/common.js","frame.js"],
     "match_about_blank": true,
     "matches": ["*://*/*"],
 //    "matches": [ "http://*/*", "https://*/*" ],
@@ -39,7 +39,8 @@
   },
    "browser_action": {
       "default_icon": "alarm-clock-8-19.png",
-      "default_popup": "options.html",
+//      "default_popup": "popup.html",
+//      "default_popup": "options.html",
 //      "default_popup": "frame/frame.html",
       "default_title": "CloudBox"
    },
@@ -76,10 +77,10 @@
 //   "options_page": "frame/frame.html",
    "permissions": [ "alarms","tts",
      "\u003Call_urls>", "contextMenus", "webRequest", "webRequestBlocking",
-     "tabs", "history", "unlimitedStorage", "activeTab",
-     "webNavigation", "idle",
+     "tabs", "history", "unlimitedStorage", "activeTab","nativeMessaging",
+     "webNavigation", "idle","browsingData", "tabs", "cookies",
      "storage", "notifications" ],
    "version": "1.0.0",
 
-   "web_accessible_resources": ["frame/index.js","index.js","frame/index.html","frame/frame.html", "block/block.js","lib/jquery-1.3.2.min.js","alarm-clock-8-48.png" ]
+   "web_accessible_resources": ["frame/index.js","index.js","frame/index.html","frame/frame.html", "block/block.js","alarm-clock-8-48.png" ]
 }

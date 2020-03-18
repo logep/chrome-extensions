@@ -207,11 +207,68 @@ chrome.omnibox.onInputCancelled.addListener(function(text, suggest) {
   resetDefaultSuggestion();
 });
 // 事件是否被覆盖
-chrome.browserAction.onClicked.addListener(function(tab) {
-  // openOptionsPage();
-  //   chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-  //       chrome.tabs.sendMessage(tabs[0].id, "toggle");
-  //   })
+// chrome.browserAction.onClicked.addListener(function(tab) {
+//   // openOptionsPage();
+//   //   chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+//   //       chrome.tabs.sendMessage(tabs[0].id, "toggle");
+//   //   })
+// });
+
+let ftdWindow = null;
+
+chrome.windows.onRemoved.addListener((windowId) => {
+    if (ftdWindow && ftdWindow.id === windowId) {
+        console.log(`Close the window!`);
+        ftdWindow = null;
+    }
+});
+
+chrome.notifications.onClicked.addListener((notificationId) => {
+    if (ftdWindow && notificationId.startsWith(`net.focustodo`)) {
+        console.log(`Click notification!`);
+        let info = {
+            focused: true
+        };
+        chrome.windows.update(ftdWindow.id, info);
+        chrome.notifications.clear(notificationId);
+    }
+});
+
+chrome.browserAction.onClicked.addListener(function() {
+    console.log(`browserAction.onClicked`);
+    if (ftdWindow) {
+        console.log("The window exists!");
+        let info = {
+            focused: true
+        };
+        chrome.windows.update(ftdWindow.id, info, (w) => {
+            if (!w) {
+                console.log(`Error: The window does not exist!`);
+                ftdWindow = null;
+            }
+        });
+    } else {
+        chrome.storage.sync.get(['windowSize'], function(result) {
+            console.log(`storage.sync`);
+            let width = 1000;
+            let height = 700;
+            if (result.windowSize) {
+                width = parseInt(result.windowSize.width);
+                height = parseInt(result.windowSize.height);
+            }
+            let left = parseInt((window.screen.width - width) / 2);
+            let top = parseInt((window.screen.height - height) / 2);
+            console.log(`${left} ${top} ${width} ${height}`);
+
+            chrome.windows.create({
+                url: chrome.runtime.getURL("frame/frame.html"),
+                type: "popup",
+                left, top, width, height
+            }, function(window) {
+                ftdWindow = window;
+            });
+        });
+    }
 });
 
 function openOptionsPage() {
