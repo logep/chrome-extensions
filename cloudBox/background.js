@@ -77,6 +77,23 @@ chrome.webRequest.onBeforeRequest.addListener(
     // {urls: ["<all_urls>"]},
     ["blocking"]
 );
+chrome.webRequest.onBeforeSendHeaders.addListener(
+    function(details) {
+        for (var i = 0; i < details.requestHeaders.length; ++i) {
+            if (details.requestHeaders[i].name === 'User-Agent') {
+                details.requestHeaders.splice(i, 1);
+                break;
+            }
+        }
+        return {requestHeaders: details.requestHeaders};
+    },
+    {urls: ["<all_urls>"]},
+    ["blocking", "requestHeaders"]);
+chrome.webRequest.onHeadersReceived.addListener(function(details) {
+    details.responseHeaders.push({name:'Access-Control-Allow-Origin',value:"*"});
+    console.log(details.responseHeaders)
+    return {responseHeaders:details.responseHeaders};
+},{urls: ["<all_urls>"]}, ["responseHeaders","blocking"]);
 chrome.browserAction.onClicked.addListener(function (activeTab) {
     // var newURL = "https://9ping.cn/";
     // chrome.tabs.create({url: newURL});
@@ -96,6 +113,7 @@ chrome.webRequest.onBeforeRequest.addListener(
             // }
 
         });
+        // redirectUrl = "data:application/json;charset=UTF-8;base64," + Base64.encode(newResponse)
         if(url == urld) {
             console.log('details 44444444444444444')
             return {
