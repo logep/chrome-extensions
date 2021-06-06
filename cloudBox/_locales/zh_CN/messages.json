@@ -1,0 +1,15 @@
+{
+   "OK": {
+      "message": "确定"
+   },
+   "clipperImageMenu": {
+   "message": "保存图片"
+},
+   "selectionMenu": {
+      "message": "选择图片"
+   },
+
+   "whatsnew": {
+      "message": "更新日志"
+   }
+}

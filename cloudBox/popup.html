@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+        button {
+            width: 128px;
+        }
+        input{outline:none}
+        .downColor{
+            color:red
+        }
+        .redx {
+            color: gray;
+            font-size:18px;
+            font-weight:900;
+            padding-left:5px;
+        }
+        .redx:hover {
+            color: red;
+            cursor:default;
+        }
+        .aText {
+            width: 100%;
+            border-style: none;
+        }
+        .aTime {
+            text-align: right;
+            padding-top:2px;
+        }
+        .uiA {
+            width: 50%;
+            border: 2px solid red;
+            padding: 4px;
+            background-color:#FEE;
+        }
+        .uiC {
+            width: 50%;
+            border: 2px solid blue;
+            padding: 4px;
+            background-color:#EEF;
+        }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body style="width:282px;font:12px arial,helvetica,sans-serif">
+      <table id="uitable" style="border-collapse:collapse">
+          <tr>
+              <td class="uiA" style="border-bottom-width:0"><input style="margin-left:0" type="time" value="00:00" id="azeit" autofocus></td>
+              <td></td>
+              <td class="uiC" style="border-bottom-width:0;text-align:right"><input style="width:40px" type="text" maxlength="2" min="1" max="999" value="10" id="czeit"/> 分钟&nbsp;</td>
+          </tr>
+          <tr>
+              <td style="padding:4px;border-left:2px solid #FAA;border-right:2px solid #AAF" colspan="3"><input style="width:265px" type="text" maxlength="100" id="alarmMsg" placeholder="请填写提示信息" autocomplete="on" /></td>
+          </tr>
+          <tr>
+              <td class="uiA" style="border-top-width:0"><button id="ButtonAlarm">保存闹钟</button></td>
+              <td></td>
+              <td class="uiC" style="border-top-width:0"><button id="ButtonCountdown">开始倒计时</button></td>
+          </tr>
+      </table>
+    <div id="alarmList"></div>
+  </body>
+</html>

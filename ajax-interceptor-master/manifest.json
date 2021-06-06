@@ -1,0 +1,42 @@
+{
+  "name": "测试请求拦截",
+  "version": "0.8",
+  "description": "测试请求拦截 为了更好的开发",
+  "permissions": [
+    "declarativeContent",
+    "storage",
+    "webNavigation",
+    "tabs",
+    "notifications",
+    "http://*/",
+    "https://*/",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+  },
+  "icons": {
+    "16": "images/16_gray.png",
+    "32": "images/32_gray.png",
+    "48": "images/48.png",
+    "128": "images/128.png"
+  },
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    "pageScripts/defaultSettings.js",
+    "pageScripts/main.js",
+    "iframe/index.html"
+  ]
+}

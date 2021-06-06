@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>cloudBox设置</title>
+    <script src="options.js"></script>
+  </head>
+  <body style="font:12px arial,helvetica,sans-serif">
+    <strong>cloudBox 参数</strong><br />
+    <input type="checkbox" id="cloudBox_notify"><label for="cloudBox_notify">显示桌面提醒</label><br>
+    <input type="checkbox" id="beep"><label for="beep">闹钟提示声音开关</label><br><br>
+    <strong>cloudBox 提示音</strong><br />
+    <select id="alarmSound">
+      <option value="cuckoo.ogg">经典一</option>
+      <option value="digital.ogg">经典二</option>
+      <option value="tts">谷歌语音</option>
+    </select> <img id="playImg" style="vertical-align:bottom" src="play-24.png" width="24" height="24" /><br /><br /><br />
+    <strong>代理请求参数设置</strong><br />
+    url:<textarea id="url" placeholder="输入需要代理的url地址" width="500"></textarea><br />
+    reponseText:<textarea id="reponseText" placeholder="输入需要代理的url地址" ></textarea><br />
+
+    <button id="saveButton">保存设置</button> <span style="color:red" id="saveMsg"></span><br />
+    <button id="saveButton2">去设置定时打开网站</button>
+  </body>
+</html>

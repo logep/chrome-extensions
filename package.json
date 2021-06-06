@@ -1,0 +1,19 @@
+{
+  "name": "chrome-extensions",
+  "version": "1.0.0",
+  "description": "1.提示框需要定制化\r 2. 隔离期间完成的成绩\r ## 实现\r - webRequest 拦截\r - 自定义拦截ajax请求\r - 消息通知从backgroud 到page 到options\r -  chrome提供的各种数据库操作\r - 菜单支持 右键菜单多入口支持打开系统 chrome.contextMenus\r - 右键支持自定义选择内容\r - Components.define写法支持\r - 国际化支持 chrome自带\r - 支持清除缓存\r - 增加通过chrome.windows.create打开窗口\r - 增加支持一键定制打开浏览器窗口url地址定时打开\r - 支持页面跳转多种方式\r ## todo\r - 各个组件通信\r - 建立一个chrome app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logep/chrome-extensions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/logep/chrome-extensions/issues"
+  },
+  "homepage": "https://github.com/logep/chrome-extensions#readme"
+}

@@ -1,0 +1,86 @@
+{
+   "background": {
+     "page": "backgroud.html"
+//      "persistent": false,
+//      "scripts": [ "translation.js","chrome.js","ext/bg.js", "background.js" ]
+   },
+  "default_locale": "en",
+//  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; connect-src https://9ping.cn; img-src 'self' https://9ping.cn; font-src 'self' https://at.alicdn.com;"
+
+  //  "content_security_policy": "script-src 'self' 'unsafe-eval' https://9ping.cn/ https://hm.baidu.com/; object-src 'self'",
+//  "content_security_policy": "style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-eval' https://cdn.bootcss.com; object-src 'self';",
+  //  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+  "omnibox": { "keyword" : "zt" },
+  "content_scripts": [ {
+    "all_frames": true,
+    "js": [ "ext/common.js","frame.js"],
+    "match_about_blank": true,
+    "matches": ["*://*/*"],
+//    "matches": [ "http://*/*", "https://*/*" ],
+    "run_at": "document_start"
+  }
+  ,
+    {
+      "all_frames": true,
+      "js": [ "ext/common2.js" ],
+      "match_about_blank": true,
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_end"
+    }
+  ],
+//  "default_locale": "zh_CN",
+//  "options_ui": {
+//    "page": "options.html",
+//    "open_in_tab": true
+//  },
+//  "devtools_page": "devtools.html",
+  "chrome_url_overrides": {
+    "newtab": "home.html"
+  },
+   "browser_action": {
+      "default_icon": "alarm-clock-8-19.png",
+//      "default_popup": "popup.html",
+//      "default_popup": "options.html",
+//      "default_popup": "frame/frame.html",
+      "default_title": "CloudBox"
+   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+K"
+      }
+    },
+    "hide_all": {
+      "suggested_key": {
+        "default": "Alt+H"
+      },
+      "description": "隐藏当前页功能"
+    },
+    "close_all_mall": {
+      "suggested_key": {
+        "default": "Alt+Shift+Q"
+      },
+      "description": "关闭全部商城页(老板键)"
+    }
+  },
+   "description": "CloudBox 工作好伴侣 给您好心情",
+   "icons": {
+      "128": "alarm-clock-8-128.png",
+      "16": "alarm-clock-8-16.png",
+      "48": "alarm-clock-8-48.png"
+   },
+   "manifest_version": 2,
+   "name": "CloudBox 工作好伴侣",
+   "homepage_url": "https://9ping.cn",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "options_page": "options.html",
+//   "options_page": "frame/frame.html",
+   "permissions": [ "alarms","tts",
+     "\u003Call_urls>", "contextMenus", "webRequest", "webRequestBlocking",
+     "tabs", "history", "unlimitedStorage", "activeTab","nativeMessaging",
+     "webNavigation", "idle","browsingData", "tabs", "cookies",
+     "storage", "notifications" ],
+   "version": "1.0.0",
+
+   "web_accessible_resources": ["frame/index.js","index.js","frame/index.html","frame/frame.html", "block/block.js","alarm-clock-8-48.png" ]
+}
