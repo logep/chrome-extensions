@@ -200,3 +200,37 @@ s {
   border-top: 5px solid #f60;
   background: #605d5c;
 }
+
+.viewChange .cards li {
+  width: 100%;
+}
+.viewChange .card {
+  display: flex;
+  justify-content: end;
+  height: 50px;
+  align-items: center;
+  padding-top: 0;
+  width: 100%;
+}
+.viewChange .cards img {
+  height: 50px;
+  width: auto;
+  display: none;
+}
+
+.viewChange .card h3,
+.viewChange .card p {
+  flex: 1;
+}
+
+.viewChange .card a {
+  position: inherit;
+  width: 100px;
+  display: inline-block;
+  border: none;
+  height: 48px;
+}
+
+.viewChange .card .titleCard {
+  display: block;
+}

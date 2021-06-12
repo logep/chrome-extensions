@@ -1,9 +1,25 @@
 
 $(function(){
-
+	if( localStorage['view_change']==='true'){
+		$(".main-cnt").addClass("viewChange");
+	}
+	// 用到 chrome 的storage
 getList()
+$("#keyword").on('input',function(){
+	if(!($('#keyword').val()=='')){
 
-
+	let list=globalList.filter((item)=>item.attr2.toLowerCase().indexOf($('#keyword').val().toLowerCase())>=0)
+	compList(list)
+	}else{
+		compList(globalList)
+	}
+})
+//回车事件绑定  
+// $('#keyword').bind('keypress', function(event) {
+// 	if (event.keyCode == "13") {
+// 			event.preventDefault();
+// 	}
+// });
 // 
 
 
@@ -21,6 +37,18 @@ $('.flexBtn').on('click', function(e){
 
 	})
 
+  $('#goCart').on('click', function(e){
+	
+		if($(".main-cnt").hasClass("viewChange")){
+			localStorage['view_change'] =''
+			$(".main-cnt").removeClass("viewChange");
+		}else{
+			$(".main-cnt").addClass("viewChange");
+			localStorage['view_change'] ='true'
+		}
+		 
+
+		})
   $('#feedback').on('click', function(e){
 notifyDingDing()
 $(".popupDialog").removeClass('hidden')
@@ -280,6 +308,10 @@ function Base641() {
 
 function submit(){
 
+	let name=$("#popupName").val()
+	let desc=$("#popupDesc").val()
+	let link=$("#popupLink").val()
+	if(!name ||!desc|| !link) return
 
  // let param=JSON.stringify({"attr15":"8abfdf40-3765-4cce-be68-3e19370023ac","attr16":"app_token","attr2":$("#popupName").val(),"attr3":$("#popupDesc").val(),"attr4":$("#popupLink").val()})
   let param=JSON.stringify({"type":9,"attr2":$("#popupName").val(),"attr16":"app_token","attr3":$("#popupDesc").val(),"attr4":$("#popupLink").val()})
@@ -308,35 +340,23 @@ let url='https://9ping.cn/m.api'
 });
 }
 
+let globalList=[]
 
-function getList(){
-		let param=9
-	 let url='https://9ping.cn/m.api'
-	//let url='http://localhost:8085/m.api'
-			 $.ajax({
-	  url:url,
-	data:'_gp=admin.anyattr&_mt=getList&attr16=app_token&type='+param,
-	  type:"GET",
-		headers: { 
-			'Content-Type': 'application/x-www-form-urlencoded'  //multipart/form-data;boundary=--xxxxxxx   application/json
-	},  
 
-	  cache:"false",
-	  dataType:"json",
-	  success:function(res){
-			let rs=res.data
+function compList(rs){
 			let str=''
 			for(let i=0;i<rs.length;i++){
 
-			    // 
+			  let attrTitle=rs[i].attr2?rs[i].attr2.substr(0,1):'无'
 				str +=`
 				<li>
                     <div class="card calculateSiteBook">
                   <img src="static/resource.a72b8f8.png"> 
+                  <div class="titleCard">${attrTitle}</div> 
                         <h3 title="${rs[i].attr2}">${rs[i].attr2}</h3>
                         <p title="${rs[i].attr2}">${rs[i].attr3}</p>
                         <a href="${rs[i].attr4}" class="assetId">查看详情</a>
-                         
+                         <div class="num">${i+1}</div>
                     </div>
                 </li>
 				`
@@ -352,6 +372,26 @@ function getList(){
 		 // 鼠标失焦 popup 直接隐藏
 	 // let param=JSON.stringify({"id":1,"attr1":"66666666","attr2":"555555"})
  })
+}
+
+
+function getList(){
+		let param=9
+	//  let url='https://9ping.cn/m.api'
+	let url='http://localhost:8085/m.api'
+			 $.ajax({
+	  url:url,
+	data:'_gp=admin.anyattr&_mt=getList&attr16=app_token&type='+param,
+	  type:"GET",
+		headers: { 
+			'Content-Type': 'application/x-www-form-urlencoded'  //multipart/form-data;boundary=--xxxxxxx   application/json
+	},  
+
+	  cache:"false",
+	  dataType:"json",
+	  success:function(res){
+			compList(res.data)
+			globalList=res.data;
 	  },
 	  error:function(data){
 	    console.log(data);

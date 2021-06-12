@@ -8,6 +8,289 @@
     <script type="text/javascript" src="crypto-js.js"></script>
     <script type="text/javascript" src="base64.js"></script>
     <script type="text/javascript" src="intro.js"></script>
+    <style>
+        #Fixed {
+      position: fixed;
+      _position: absolute;
+      z-index: 100;
+      bottom: 70px;
+      right: 0;
+      _bottom: auto;
+      _top: expression(
+        document.documentElement.scrollTop +
+          document.documentElement.clientHeight-this.offsetHeight-70
+      );
+      border: 2px solid #eee;
+      width: 63px;
+      text-indent: -40000px;
+      background: #fff;
+    }
+      body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+              
+                width: 518px;
+                min-width: 518px;
+              min-height: 318px;
+          
+            
+            font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+    
+        .banner {
+            text-align: center;
+        }
+    
+        .banner-desc {
+            padding-top: 20px;
+        }
+    
+        .banner-desc h1 {
+            font-size: 34px;
+            margin: 0;
+            line-height: 48px;
+            color: #555;
+        }
+    
+        .banner-desc p {
+            font-size: 18px;
+            line-height: 28px;
+            color: #888;
+            margin: 10px 0 5px;
+        }
+    
+        .jumbotron {
+            width: 890px;
+            margin: 30px auto;
+            position: relative;
+        }
+    
+        .jumbotron img {
+            width: 100%;
+        }
+    
+        .jumbotron .jumbotron-red {
+            transition: height .1s;
+            background: #fff;
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+    
+        .cards {
+            margin: 20px auto 110px;
+            <!-- width: 1140px; -->
+        }
+    
+        .cards .container {
+          padding: 0;
+        /* margin: 0 -11px; */
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        }
+    
+        .cards .container:after, .cards .container:before {
+            display: table;
+            content: "";
+        }
+    
+        .cards li {
+           width: 250px;
+        padding: 0 19px;
+        box-sizing: border-box;
+        /* float: left; */
+        list-style: none;
+        }
+    
+        .card {
+           height: 250px;
+        width: 100%;
+        background: #fff;
+        border: 1px solid #eaeefb;
+        border-radius: 5px;
+        box-sizing: border-box;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top:20px;
+        position: relative;
+        transition: all .3s ease-in-out;
+        bottom: 0;
+        }
+    
+        .card .titleCard{
+            width: 50px;
+    height: 50px;
+    margin: 0 8.33px;
+    vertical-align: middle;
+    line-height: 50px;
+    border-radius: 50%;
+    background: #227bd8;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    display: none;
+        }
+    
+        .card .num {
+            position:absolute;
+            right: 0;
+    bottom: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #b6b9ff;
+}
+    
+        .cards img {
+            display: inline;
+            width: 160px;
+            <!-- height: 120px; -->
+        }
+    
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #1f2f3d;
+            font-weight: 400;
+                height: 17px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        }
+    
+        .card p {
+            font-size: 14px;
+            color: #99a9bf;
+            padding: 0 10px;
+            line-height: 20px;
+                height: 17px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        }
+        .flexBtn{
+            color: #409eff;
+            color: #fff;
+            background: #409eff;
+            height: 53px;
+            line-height: 52px;
+            font-size: 14px;
+        
+            text-align: center;
+            border: 0;
+            border-top: 1px solid #eaeefb;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+          
+            transition: all .3s;
+            text-decoration: none;
+            display: block;  
+        }
+        .flexBtnCancel{
+            color: #409eff;
+            background: #dde2e7;
+            height: 53px;
+            line-height: 52px;
+            font-size: 14px;
+        
+            text-align: center;
+            border: 0;
+            border-top: 1px solid #eaeefb;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+          
+            transition: all .3s;
+            text-decoration: none;
+            display: block;  
+        }
+    
+        .card a {
+            height: 53px;
+            line-height: 52px;
+            font-size: 14px;
+            color: #409eff;
+            text-align: center;
+            border: 0;
+            border-top: 1px solid #eaeefb;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #fff;
+            border-radius: 0 0 5px 5px;
+            transition: all .3s;
+            text-decoration: none;
+            display: block;
+        }
+    
+        .card a:hover {
+            color: #fff;
+            background: #409eff
+        }
+    
+        .card:hover {
+            bottom: 6px;
+            box-shadow: 0 6px 18px 0 rgba(232, 237, 250, .5)
+        }
+        .nodata{
+        text-align: center;
+        width: 100%;
+        height: 300px;
+        font-size: 48px;
+        line-height: 100px;
+    }
+    .popupDialog{
+    position: fixed;
+    bottom: 70px;
+      right: 0;
+    width:500px;
+    height:250px;
+    
+    z-index: 999;
+    
+    }
+    
+    .form-control, .form-select {
+        padding: 5px 12px;
+        font-size: 14px;
+        line-height: 20px;
+        color:#24292e;
+        vertical-align: middle;
+    
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        box-sizing: border-box;
+        outline: none;
+        box-shadow: inset 0 1px 0 rgba(225,228,232,0.2)
+    }
+    .form-control.focus, .form-control:focus, .form-select.focus, .form-select:focus {
+        border-color: #0366d6;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(3,102,214,0.3);
+    }
+    .mb-3 {
+        margin-bottom: 16px!important;
+    }
+    .input-block {
+        display: block;
+        width: 100%;
+    }
+    .hidden{
+    
+        display: none;
+    }
+    </style>
    <link href="css/198zone.css" type="text/css" rel="stylesheet">
 
 <script type="text/javascript" src="js/198zone.js"></script>
@@ -15,273 +298,15 @@
 </head>
 <!-- 做两种方式一种横排 一种方格 布局 -->
 <body>
-<style>
-    #Fixed {
-  position: fixed;
-  _position: absolute;
-  z-index: 100;
-  bottom: 70px;
-  right: 0;
-  _bottom: auto;
-  _top: expression(
-    document.documentElement.scrollTop +
-      document.documentElement.clientHeight-this.offsetHeight-70
-  );
-  border: 2px solid #eee;
-  width: 63px;
-  text-indent: -40000px;
-  background: #fff;
-}
-  body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-		  
-            width: 518px;
-            min-width: 518px;
-          min-height: 318px;
-      
-		
-        font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
-        font-weight: 400;
-        -webkit-font-smoothing: antialiased;
-        -webkit-tap-highlight-color: transparent;
-    }
 
-    .banner {
-        text-align: center;
-    }
-
-    .banner-desc {
-        padding-top: 20px;
-    }
-
-    .banner-desc h1 {
-        font-size: 34px;
-        margin: 0;
-        line-height: 48px;
-        color: #555;
-    }
-
-    .banner-desc p {
-        font-size: 18px;
-        line-height: 28px;
-        color: #888;
-        margin: 10px 0 5px;
-    }
-
-    .jumbotron {
-        width: 890px;
-        margin: 30px auto;
-        position: relative;
-    }
-
-    .jumbotron img {
-        width: 100%;
-    }
-
-    .jumbotron .jumbotron-red {
-        transition: height .1s;
-        background: #fff;
-        position: absolute;
-        left: 0;
-        top: 0;
-        overflow: hidden;
-    }
-
-    .cards {
-        margin: 20px auto 110px;
-        <!-- width: 1140px; -->
-    }
-
-    .cards .container {
-      padding: 0;
-    /* margin: 0 -11px; */
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    }
-
-    .cards .container:after, .cards .container:before {
-        display: table;
-        content: "";
-    }
-
-    .cards li {
-       width: 250px;
-    padding: 0 19px;
-    box-sizing: border-box;
-    /* float: left; */
-    list-style: none;
-    }
-
-    .card {
-       height: 250px;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #eaeefb;
-    border-radius: 5px;
-    box-sizing: border-box;
-    text-align: center;
-    margin-bottom: 20px;
-	padding-top:20px;
-    position: relative;
-    transition: all .3s ease-in-out;
-    bottom: 0;
-    }
-
-    .card img {
-       
-    }
-
-    .cards img {
-        width: 160px;
-        <!-- height: 120px; -->
-    }
-
-    .card h3 {
-        margin: 0;
-        font-size: 18px;
-        color: #1f2f3d;
-        font-weight: 400;
-		    height: 17px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    }
-
-    .card p {
-        font-size: 14px;
-        color: #99a9bf;
-        padding: 0 10px;
-        line-height: 20px;
-		    height: 17px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    }
-    .flexBtn{
-        color: #409eff;
-        color: #fff;
-        background: #409eff;
-        height: 53px;
-        line-height: 52px;
-        font-size: 14px;
-    
-        text-align: center;
-        border: 0;
-        border-top: 1px solid #eaeefb;
-        padding: 0;
-        cursor: pointer;
-        width: 100%;
-      
-        transition: all .3s;
-        text-decoration: none;
-        display: block;  
-    }
-    .flexBtnCancel{
-        color: #409eff;
-        background: #dde2e7;
-        height: 53px;
-        line-height: 52px;
-        font-size: 14px;
-    
-        text-align: center;
-        border: 0;
-        border-top: 1px solid #eaeefb;
-        padding: 0;
-        cursor: pointer;
-        width: 100%;
-      
-        transition: all .3s;
-        text-decoration: none;
-        display: block;  
-    }
-
-    .card a {
-        height: 53px;
-        line-height: 52px;
-        font-size: 14px;
-        color: #409eff;
-        text-align: center;
-        border: 0;
-        border-top: 1px solid #eaeefb;
-        padding: 0;
-        cursor: pointer;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background-color: #fff;
-        border-radius: 0 0 5px 5px;
-        transition: all .3s;
-        text-decoration: none;
-        display: block;
-    }
-
-    .card a:hover {
-        color: #fff;
-        background: #409eff
-    }
-
-    .card:hover {
-        bottom: 6px;
-        box-shadow: 0 6px 18px 0 rgba(232, 237, 250, .5)
-    }
-	.nodata{
-	text-align: center;
-    width: 100%;
-    height: 300px;
-    font-size: 48px;
-    line-height: 100px;
-}
-.popupDialog{
-position: fixed;
-bottom: 70px;
-  right: 0;
-width:500px;
-height:250px;
-
-z-index: 999;
-
-}
-
-.form-control, .form-select {
-    padding: 5px 12px;
-    font-size: 14px;
-    line-height: 20px;
-    color:#24292e;
-    vertical-align: middle;
-
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    box-sizing: border-box;
-    outline: none;
-    box-shadow: inset 0 1px 0 rgba(225,228,232,0.2)
-}
-.form-control.focus, .form-control:focus, .form-select.focus, .form-select:focus {
-    border-color: #0366d6;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(3,102,214,0.3);
-}
-.mb-3 {
-    margin-bottom: 16px!important;
-}
-.input-block {
-    display: block;
-    width: 100%;
-}
-.hidden{
-
-    display: none;
-}
-</style>
 <div class="main-cnt">
     <div>
-      
+     
         <div class="cards">
+            <div>
+                <input type="text" class="form-control input-contrast input-block mb-3 "
+                id="keyword" placeholder="更快搜索已存在系统,按回车..." value="" autocomplete="off">
+              </div>
             <ul class="container" id="cardDepartSite">
 			<p class="nodata">没有数据</p>
             </ul>
@@ -289,13 +314,14 @@ z-index: 999;
     </div>
 </div>
 <div class="popupDialog hidden">
-     <div class="card" style="width:430px;height:230px;padding:20px;box-shadow: 0 0 5px 3px #409eff;">
+     <div class="card" style="width:430px;height:230px;padding:20px;    box-shadow: 0 0 0 3px rgb(3 102 214 / 50%);
+    ;">
         <input type="text" class="form-control input-contrast input-block mb-3 "
-         id="popupName" placeholder="输入系统名称…" value="" autocomplete="off">
+         id="popupName" placeholder="必输入系统名称…" value="" autocomplete="off">
          <input type="text" class="form-control input-contrast input-block mb-3 "
-         id="popupDesc" placeholder="输入系统简介…" value="" autocomplete="off">
+         id="popupDesc" placeholder="必输入系统简介…" value="" autocomplete="off">
          <input type="text" class="form-control input-contrast input-block mb-3 "
-         id="popupLink" placeholder="输入系统链接…" value="" autocomplete="off">
+         id="popupLink" placeholder="必输入系统链接…" value="" autocomplete="off">
 
          <div style="display: flex;">
             <div href="##" class="flexBtnCancel" style="width:50%">取消</div>
@@ -308,6 +334,7 @@ z-index: 999;
 
 <div id="Fixed">
 <a id='feedback' class='fl btn' title="求反馈" href="javascript:void(0)">求反馈</a>
+<a id='goCart' class='fl btn' title="切换视图" href="javascript:void(0)">切换视图</a>
 <a id="goTop" class="fl" title="去顶部" href="javascript:;">去顶部</a>
 </div>
 
