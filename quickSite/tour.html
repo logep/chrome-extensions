@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="crypto-js.js"></script>
-    <script type="text/javascript" src="base64.js"></script>
-    <script type="text/javascript" src="intro.js"></script>
+    <!-- <script type="text/javascript" src="base64.js"></script> -->
+    <script type="text/javascript" src="dist/intro.min.js"></script>
     <style>
         #Fixed {
       position: fixed;
@@ -30,8 +30,8 @@
             padding: 0;
             height: 100%;
               
-                width: 518px;
-                min-width: 518px;
+                width: 500px;
+              
               min-height: 318px;
           
             
@@ -250,9 +250,9 @@
     }
     .popupDialog{
     position: fixed;
-    bottom: 70px;
-      right: 0;
-    width:500px;
+    bottom: 50px;
+      right: 50px;
+    width:400px;
     height:250px;
     
     z-index: 999;
@@ -303,8 +303,8 @@
     <div>
      
         <div class="cards">
-            <div>
-                <input type="text" class="form-control input-contrast input-block mb-3 "
+            <div style="padding:0 19px;">
+                <input type="text" style="line-height: 34px;" class="form-control input-contrast input-block mb-3 "
                 id="keyword" placeholder="更快搜索已存在系统,按回车..." value="" autocomplete="off">
               </div>
             <ul class="container" id="cardDepartSite">
@@ -314,7 +314,7 @@
     </div>
 </div>
 <div class="popupDialog hidden">
-     <div class="card" style="width:430px;height:230px;padding:20px;    box-shadow: 0 0 0 3px rgb(3 102 214 / 50%);
+     <div class="card" style="width:400px;height:230px;padding:20px;    box-shadow: 0 0 0 3px rgb(3 102 214 / 50%);
     ;">
         <input type="text" class="form-control input-contrast input-block mb-3 "
          id="popupName" placeholder="必输入系统名称…" value="" autocomplete="off">
